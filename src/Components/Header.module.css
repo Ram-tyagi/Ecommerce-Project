@@ -1,0 +1,11 @@
+.heading {
+
+    background-color: grey;
+    height: 30vh;
+}
+
+.menu li{
+
+    display: inline;
+    margin-right: 5rem;
+}

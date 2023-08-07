@@ -1,5 +1,6 @@
 
-import './App.css';
+
+import CartProvider from './Store/CartProvider';
 import Header from './Components/Header'
 import Footer from './Components/Footer';
 import Products from './Components/Product';
@@ -7,12 +8,12 @@ import Products from './Components/Product';
 
 function App() {
   return (
-    <div className="App">
+    <CartProvider>
       
       <Header />
       <Products />
       <Footer />
-    </div>
+    </CartProvider>
   );
 }
 

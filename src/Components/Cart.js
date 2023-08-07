@@ -1,4 +1,6 @@
 import "./Cart.module.css";
+import { useContext } from "react";
+import CartContext from "../Store/Cart-Context";
 
 const cartElements = [
   {
@@ -24,6 +26,8 @@ const cartElements = [
 ];
 
 const Cart = (props) => {
+  const cartCtx = useContext(CartContext);
+
   return (
     <section>
       <button onClick={props.onXClick}>x</button>
@@ -34,7 +38,7 @@ const Cart = (props) => {
         <span>Quantity</span>
       </div>
       <div>
-        {cartElements.map((item) => {
+        {cartCtx.items.map((item) => {
           return (
             <div>
               <span>{item.title}</span>
@@ -45,7 +49,7 @@ const Cart = (props) => {
           );
         })}
       </div>
-      <div>Total $100</div>
+      <div>Total</div>
       <button>Purchase</button>
     </section>
   );

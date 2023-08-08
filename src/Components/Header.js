@@ -1,8 +1,9 @@
 import { useState,useContext } from 'react';
+import { NavLink} from 'react-router-dom';
 import Cart from './Cart';
 import classes from './Header.module.css'
 import CartContext from '../Store/Cart-Context';
-
+import classes from "./Headers.module.css";
 const Heading = () => {
     const cartCtx = useContext(CartContext)
 
@@ -19,13 +20,15 @@ const Heading = () => {
     }
     return <>
     <ul className={classes.menu}>
-        <li>Home</li>
-        <li>Store</li>
-        <li>About</li>
+    <li>
+            <NavLink to='/home'>Home</NavLink></li>
+        <li> <NavLink to="/store">Store</NavLink></li>
+        <li>
+            <NavLink to='/about'>About</NavLink></li>
     </ul>
    
     <button onClick={onCartClickHander}>Cart</button>
-    <sup>0</sup>
+    
     <sup>{cartCtx.items.length}</sup>
     {showCart && <Cart onXClick={onXClickHandler}/>}
     <h1 className={classes.heading}>The Generics</h1></>

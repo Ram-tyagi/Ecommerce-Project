@@ -1,22 +1,27 @@
 
-import {CreateBrowserRouter,RouterProvider} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import CartProvider from './Store/CartProvider';
 import Header from './Components/Header'
 import Footer from './Components/Footer';
 import Products from './Components/Product';
 import About from './Components/About';
+import Store from './Store';
+import Home from './Home';
 
-const router=CreateBrowserRouter([
-  {path: '/', Element: <About/>},
-])
 function App() {
   return (
-    <CartProvider>
-      <RouterProvider router={router}/>
+    <>
+    
+      <CartProvider>
+      <Route path="/home"><Home /></Route>
+        <Route path="/store"><Store /></Route>
+        <Route path="/about"><About /></Route>
       <Header />
       <Products />
       <Footer />
-    </CartProvider>
+      </ CartProvider>
+     
+    </>
   );
 }
 

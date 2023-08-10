@@ -1,27 +1,37 @@
 
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import CartProvider from './Store/CartProvider';
-import Header from './Components/Header'
-import Footer from './Components/Footer';
+import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer';
 import Products from './Components/Product';
-import About from './Components/About';
-import Store from './Store';
-import Home from './Home';
+import About from './Components/Pages/About';
+import Store from './Components/Store';
+import Home from './Components/Pages/Home';
+import React from 'react';
+import ContactUs from './Components/Pages/ContectUs';
 
 function App() {
   return (
-    <>
-    
+   
+    <React.Fragment>
       <CartProvider>
-      <Route path="/home"><Home /></Route>
-        <Route path="/store"><Store /></Route>
-        <Route path="/about"><About /></Route>
-      <Header />
+       <Header />
+        <Routes>
+        <Route path="/" element={<Home/>} />
+    
+       
+        <Route path="/store" element={<Store />}/>
+    
+          
+        <Route path="/about"  element={ <About />}/>
+         
+         <Route path="/contactUs" element={<ContactUs />}/>
+        </Routes>
+    
       <Products />
       <Footer />
       </ CartProvider>
-     
-    </>
+     </React.Fragment>
   );
 }
 

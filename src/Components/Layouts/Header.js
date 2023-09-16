@@ -1,6 +1,7 @@
 import React,{useContext} from 'react'
 import { Button,Nav,Navbar} from 'react-bootstrap'
 import CartContext from '../Store/cart-context'
+import { Link } from "react-router-dom";
 
 
 const Header = (props) => {
@@ -11,10 +12,7 @@ const Header = (props) => {
       cartCtx.items.forEach(element => {
           cartCount += Number(element.quantity);
       })
-      const clickStoreHandler = (event) => {
-        event.preventDefault();
-        props.onClickStore();
-      };
+      
     
       const cartClickHandler = (event) => {
         event.preventDefault();
@@ -24,13 +22,13 @@ const Header = (props) => {
     <div> 
     
     <Navbar bg="dark" expand="sm" variant="dark">
-    
+    <Navbar.Brand href="/" >
+            The Genrics
+          </Navbar.Brand>
            <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="jds.com" onClick={clickStoreHandler}>
-              Store
-            </Nav.Link>
-            <Nav.Link href="/">About</Nav.Link>
+           <Nav.Link as={Link} to="/">Home</Nav.Link>
+          <Nav.Link as={Link} to="/store">Store</Nav.Link>
+          <Nav.Link as={Link} to="/about">About</Nav.Link>
           </Nav>
       
       <Button class="btn btn-outline-success my-2 my-sm-0  " onClick={cartClickHandler} >Cart {cartCount}</Button>
@@ -42,7 +40,6 @@ const Header = (props) => {
 
     
     
-    <h1 style={{background:"lightblue", textAlign:"center", fontFamily:"sans-serif"}} >The Generics</h1>
     </div>
 
   )

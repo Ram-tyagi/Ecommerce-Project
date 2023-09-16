@@ -1,7 +1,7 @@
 import React,{useContext,useState,useEffect} from 'react'
 import CartItems from './CartItem'
 import classes from './Cart.module.css'
-import CartContext from './Store/cart-context'
+import CartContext from '../Store/cart-context'
 import Modal from "./Modal"
 
   

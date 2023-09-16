@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import classes from "./Store.module.css"
 import { Card, Container, Row, Button, Col } from "react-bootstrap";
-import CartContext from './Store/cart-context';
+import CartContext from './Store/cart-context'
+import { Link } from 'react-router-dom';
 
 const productsArr = [
 
@@ -70,13 +71,18 @@ const Store = (props) => {
       cartCtx.addCartItem({ ...ele });
     }
   };
+  const p="/store/";
   return (
     <Container className={classes.card}>
     <Row xs={1} md={2} className="g-8">
     {productsArr.map((item,idx) => (
      <Col key={idx}>
        <Card id={idx} style={{width: '20rem'}} className="mt-3">
-         <Card.Title style={{textAlign: 'center', paddingTop: '0.5rem'}}>{item.title}</Card.Title>
+       <Link to={p + item.title}>
+       <Card.Title style={{ textAlign: "center", paddingTop: "0.5rem" }}>
+       {item.title}
+       </Card.Title>
+       </Link>
          <Card.Img variant="top" src={item.imageUrl} className={classes.img}/>
          <Card.Body className={classes.body}>
            <Card.Text>${item.price}</Card.Text>

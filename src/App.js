@@ -3,10 +3,11 @@ import Store from "./Components/Store";
 import Header from "./Components/Layouts/Header";
 import  Footer  from "./Components/Layouts/Footer";
 import CartProvider from "./Components/Store/cartProvider";
-import Cart from "./Components/Cart";
+import Cart from "./Components/Cart/Cart";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Routes/Home";
 import About from "./Components/Routes/About";
+import Product from "./Components/Product";
 
 const productsArrs = [
   {
@@ -70,6 +71,7 @@ const hideCartHandler=()=>{
   <Route path="/about"  element={ <About />}/>
   
   <Route path="/store"  element= {storeVisible && <Store  productsArr={productsArrs}/>}/>
+  <Route path="/store/:productId"  element={<Product productsArr={productsArrs} />}/>
   </Routes>
         {cartVisible && <Cart onClose={hideCartHandler}  />}
         <Footer />

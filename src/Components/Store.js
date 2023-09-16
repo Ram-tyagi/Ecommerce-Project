@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import classes from "./Store.module.css"
 import { Card, Container, Row, Button, Col } from "react-bootstrap";
+import CartContext from './Store/cart-context';
 
 const productsArr = [
 
     {
     
+
     title: 'Colors',
     
     price: 100,
@@ -15,7 +17,6 @@ const productsArr = [
     },
     
     {
-    
     title: 'Black and white Colors',
     
     price: 50,
@@ -26,6 +27,7 @@ const productsArr = [
     
     {
     
+
     title: 'Yellow and Black Colors',
     
     price: 70,
@@ -35,7 +37,8 @@ const productsArr = [
     },
     
     {
-    
+  
+
     title: 'Blue Color',
     
     price: 100,
@@ -47,17 +50,37 @@ const productsArr = [
     ]
 
 const Store = (props) => {
+  const cartCtx=useContext(CartContext)
+  
+  const clickHandler = (event) => {
+    event.preventDefault();
+    const eleIdx = event.target.parentElement.parentElement.id;
+
+    if (cartCtx.items.length > 0) {
+      let copy = [...cartCtx.items];
+      copy = copy.filter((element) => element.id === eleIdx);
+      if (copy.length > 0) {
+        cartCtx.quantityChange(copy[0].id);
+      } else {
+        const ele = { id: eleIdx, ...productsArr[eleIdx], quantity: 1 };
+        cartCtx.addCartItem({ ...ele });
+      }
+    } else {
+      const ele = { id: eleIdx, ...productsArr[eleIdx], quantity: 1 };
+      cartCtx.addCartItem({ ...ele });
+    }
+  };
   return (
     <Container className={classes.card}>
     <Row xs={1} md={2} className="g-8">
-    {productsArr.map((item, idx) => (
+    {productsArr.map((item,idx) => (
      <Col key={idx}>
-       <Card style={{width: '20rem'}} className="mt-3">
+       <Card id={idx} style={{width: '20rem'}} className="mt-3">
          <Card.Title style={{textAlign: 'center', paddingTop: '0.5rem'}}>{item.title}</Card.Title>
          <Card.Img variant="top" src={item.imageUrl} className={classes.img}/>
          <Card.Body className={classes.body}>
            <Card.Text>${item.price}</Card.Text>
-           <Button variant="info">Add to cart</Button>{' '}
+           <Button variant="info" onClick={clickHandler}>Add to cart</Button>{' '}
          </Card.Body>
        </Card>
      </Col>

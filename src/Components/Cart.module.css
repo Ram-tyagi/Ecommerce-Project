@@ -1,0 +1,12 @@
+.header {
+
+  text-align: center;
+  align-items: center;
+}
+.header h3 {
+  background: rgb(45, 135, 142);
+  align-items: center;
+  border-radius: 5px;
+  color: white;
+  padding: 0.25rem;
+}

@@ -1,17 +1,40 @@
-import React from "react";
+import React,{useState} from "react";
 import Store from "./Components/Store";
-// import { Button } from "react-bootstrap";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-
+import Header from "./Components/Layouts/Header";
+import  Footer  from "./Components/Layouts/Footer";
+import CartProvider from "./Components/Store/cartProvider";
+import Cart from "./Components/Cart";
 function App() {
-  return (
-    <>
-    <Header />
-    <Store/>
-    <Footer/>
-  </>
-   );
-  }
+  const [storeVisible, setStoreVisible] = useState(true);
+  const [cartVisible, setCartVisible] = useState(false);
+
+  const visibleStoreHandler = () => {
+    setStoreVisible(true);
+  };
+
+  const visibleCartHandler = () => {
+   
+      setCartVisible(true);
+}
+const hideCartHandler=()=>{
+  setCartVisible(false);
+}
+
   
-  export default App;
+  return (
+    <CartProvider>
+      <div>
+        <Header
+          onClickStore={visibleStoreHandler}
+          onClickCart={visibleCartHandler}
+        />
+        {storeVisible && <Store />}
+        {cartVisible && <Cart onClose={hideCartHandler} />}
+        <Footer />
+      </div>
+    </CartProvider>
+  
+  );
+}
+
+export default App;

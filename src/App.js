@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Routes/Home";
 import About from "./Components/Routes/About";
 import Product from "./Components/Product";
+import ContactUs from "./Components/Routes/ContactUs";
 
 const productsArrs = [
   {
@@ -71,6 +72,7 @@ const hideCartHandler=()=>{
   <Route path="/about"  element={ <About />}/>
   
   <Route path="/store"  element= {storeVisible && <Store  productsArr={productsArrs}/>}/>
+  <Route path="/contactus"  element={ <ContactUs />}/>
   <Route path="/store/:productId"  element={<Product productsArr={productsArrs} />}/>
   </Routes>
         {cartVisible && <Cart onClose={hideCartHandler}  />}

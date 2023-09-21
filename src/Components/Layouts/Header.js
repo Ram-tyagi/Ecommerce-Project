@@ -29,6 +29,7 @@ const Header = (props) => {
            <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/store">Store</Nav.Link>
           <Nav.Link as={Link} to="/about">About</Nav.Link>
+          <Nav.Link as={Link} to="/contactus">Contact us</Nav.Link>
           </Nav>
       
       <Button class="btn btn-outline-success my-2 my-sm-0  " onClick={cartClickHandler} >Cart {cartCount}</Button>

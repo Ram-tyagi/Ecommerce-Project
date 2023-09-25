@@ -1,11 +1,14 @@
 import React,{useContext} from 'react'
 import { Button,Nav,Navbar} from 'react-bootstrap'
 import CartContext from '../Store/cart-context'
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
+import AuthContext from '../Authentication/auth-context';
 
 
 const Header = (props) => {
       const cartCtx=useContext(CartContext)
+      const authCtx = useContext(AuthContext);
+      let location=useLocation();
       
       let cartCount = 0
 
@@ -18,6 +21,13 @@ const Header = (props) => {
         event.preventDefault();
         props.onClickCart();
       };
+      
+      const logoutClickHandler = () => {
+        authCtx.logout();
+      }
+      const isStoreVisible = location.pathname === "/store";
+
+
   return (
     <div> 
     
@@ -30,9 +40,11 @@ const Header = (props) => {
           <Nav.Link as={Link} to="/store">Store</Nav.Link>
           <Nav.Link as={Link} to="/about">About</Nav.Link>
           <Nav.Link as={Link} to="/contactus">Contact us</Nav.Link>
+          <Nav.Link as={Link} to="/Login">Login</Nav.Link>
           </Nav>
       
-      <Button class="btn btn-outline-success my-2 my-sm-0  " onClick={cartClickHandler} >Cart {cartCount}</Button>
+          {isStoreVisible && (<Button variant="outline-warning" onClick={cartClickHandler} >Cart {cartCount}</Button>)}
+         {authCtx.isLoggedIn && <Button variant="danger" onClick={logoutClickHandler}>Logout</Button>}
        
     
     

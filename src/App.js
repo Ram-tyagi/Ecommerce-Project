@@ -9,6 +9,7 @@ import Home from "./Components/Routes/Home";
 import About from "./Components/Routes/About";
 import Product from "./Components/Product";
 import ContactUs from "./Components/Routes/ContactUs";
+import Login from "./Components/Login/Login";
 
 const productsArrs = [
   {
@@ -16,7 +17,7 @@ const productsArrs = [
     price: 100,
     imageUrl: [
       "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-      "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+      
     ],
     des: "Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of sorrows",
   },
@@ -73,7 +74,9 @@ const hideCartHandler=()=>{
   
   <Route path="/store"  element= {storeVisible && <Store  productsArr={productsArrs}/>}/>
   <Route path="/contactus"  element={ <ContactUs />}/>
+  <Route path="/Login" element={<Login/>}/>
   <Route path="/store/:productId"  element={<Product productsArr={productsArrs} />}/>
+ 
   </Routes>
         {cartVisible && <Cart onClose={hideCartHandler}  />}
         <Footer />
